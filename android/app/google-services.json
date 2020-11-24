@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "95865109355",
+    "firebase_url": "https://loja-virtual-estudo.firebaseio.com",
+    "project_id": "loja-virtual-estudo",
+    "storage_bucket": "loja-virtual-estudo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:95865109355:android:988898bcca2c0cd6c22a2e",
+        "android_client_info": {
+          "package_name": "br.com.devpedrohro.e_commerce_estudo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "95865109355-bdg0b247o4hosjma3d07td9ct0671i44.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB35KrJ-TEWeNQsRKEyfubgHEh-wAznMYQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "95865109355-bdg0b247o4hosjma3d07td9ct0671i44.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

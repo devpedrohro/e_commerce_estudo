@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:e_commerce_estudo/constants.dart';
 import 'package:e_commerce_estudo/tiles/category_tile.dart';
 import 'package:flutter/material.dart';
 

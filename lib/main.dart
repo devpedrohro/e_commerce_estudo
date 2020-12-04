@@ -1,6 +1,9 @@
 import 'package:e_commerce_estudo/constants.dart';
+import 'package:e_commerce_estudo/models/cart_model.dart';
+import 'package:e_commerce_estudo/models/user_model.dart';
 import 'package:e_commerce_estudo/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:scoped_model/scoped_model.dart';
 
 void main() {
   runApp(MyApp());
@@ -9,13 +12,22 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'E-Commerce Estudo',
-      theme: ThemeData(
-        primaryColor: kPrimaryColor,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: HomeScreen(),
-    );
+    return ScopedModel<UserModel>(
+        model: UserModel(),
+        child: ScopedModelDescendant<UserModel>(
+          builder: (context, child, model) {
+            return ScopedModel<CartModel>(
+              model: CartModel(model),
+              child: MaterialApp(
+                title: 'E-Commerce Estudo',
+                theme: ThemeData(
+                  primaryColor: kPrimaryColor,
+                  visualDensity: VisualDensity.adaptivePlatformDensity,
+                ),
+                home: HomeScreen(),
+              ),
+            );
+          },
+        ));
   }
 }

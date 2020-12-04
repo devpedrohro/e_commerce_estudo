@@ -1,7 +1,9 @@
 import 'package:e_commerce_estudo/constants.dart';
+import 'package:e_commerce_estudo/models/user_model.dart';
 import 'package:e_commerce_estudo/screens/login/login_screen.dart';
 import 'package:e_commerce_estudo/tiles/drawer_tile.dart';
 import 'package:flutter/material.dart';
+import 'package:scoped_model/scoped_model.dart';
 
 class CustomDrawer extends StatelessWidget {
   final PageController pageController;
@@ -36,34 +38,44 @@ class CustomDrawer extends StatelessWidget {
                               fontWeight: FontWeight.bold),
                         )),
                     Positioned(
-                      left: 0,
-                      bottom: 0,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Olá,",
-                            style: TextStyle(
-                                color: kTextColor,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => LoginScreen()));
-                            },
-                            child: Text(
-                              "Entre ou cadastre-se >",
-                              style: TextStyle(
-                                  color: kPrimaryColor,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          )
-                        ],
-                      ),
-                    )
+                        left: 0,
+                        bottom: 0,
+                        child: ScopedModelDescendant<UserModel>(
+                          builder: (context, child, model) {
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Olá, ${!model.isLoggedIn() ? "" : model.userData["name"]}",
+                                  style: TextStyle(
+                                      color: kTextColor,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    if (!model.isLoggedIn())
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  LoginScreen()));
+                                    else
+                                      model.signOut();
+                                  },
+                                  child: Text(
+                                    !model.isLoggedIn()
+                                        ? "Entre ou cadastre-se >"
+                                        : "Sair",
+                                    style: TextStyle(
+                                        color: kPrimaryColor,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                )
+                              ],
+                            );
+                          },
+                        ))
                   ],
                 ),
               ),
